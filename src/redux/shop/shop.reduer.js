@@ -1,11 +1,52 @@
-import SHOP_DATA from './shop.data';
+// import SHOP_DATA from './shop.data';
+import ShopActionTypes from './shop.types';
 
+//without react thunks
+/*
 const INITIAL_STATE = {
-    collections: SHOP_DATA
+    collections: null
 }
-
+*/
+//with react thunks
+const INITIAL_STATE = {
+    collections: null,
+    isFetching: false,
+    errorMessage: undefined
+}
+//without react thunks
+/*
 const shopReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
+        case ShopActionTypes.UPDATE_COLLECTIONS:
+            return {
+                ...state,
+                collections: action.payload
+            }
+        default:
+            return state;
+    }
+}
+*/
+//with react thunks
+const shopReducer = (state = INITIAL_STATE, action) => {
+    switch (action.type) {
+        case ShopActionTypes.FETCH_COLLECTIONS_START:
+            return {
+                ...state,
+                isFetching: true
+            }
+        case ShopActionTypes.FETCH_COLLECTIONS_SUCCESS:
+            return {
+                ...state,
+                isFetching: false,
+                collections: action.payload
+            }
+        case ShopActionTypes.FETCH_COLLECTIONS_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                errorMessage: action.payload
+            }
         default:
             return state;
     }

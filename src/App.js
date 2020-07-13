@@ -11,6 +11,7 @@ import SignInAndSignUp from './pages/sign-in-and-sign-up/sign-in-and-sign-up.com
 import Header from './components/header/header.component';
 import CheckoutPage from './components/checkout/checkout.component'
 import './App.css';
+// import { selectCollectionsForPreview } from './redux/shop/shop.selector'
 
 class App extends React.Component {
 
@@ -31,7 +32,9 @@ class App extends React.Component {
         })
       }
       setCurrentUser(userAuth);
+      // addCollectionAndDocuments('collections', collectionsArray.map(({ title, items }) => ({ title, items })))
     })
+
   }
 
   componentWillUnmount() {
@@ -59,7 +62,8 @@ class App extends React.Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser
+  currentUser: selectCurrentUser,
+  // collectionsArray: selectCollectionsForPreview
 })
 
 const mapDispathToProps = dispatch => ({
